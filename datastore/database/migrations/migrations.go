@@ -1,11 +1,11 @@
 package migrations
 
 import (
-	"t-bonatti/gopj/models"
+	"t-bonatti/gopj/model"
 
 	"gorm.io/gorm"
 )
 
 func RunMigrations(db *gorm.DB) {
-	db.AutoMigrate(models.Company{})
+	db.AutoMigrate(model.Company{})
 }
