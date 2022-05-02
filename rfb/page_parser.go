@@ -47,7 +47,7 @@ func (p *PageParser) GetRfbFiles() (rfbFiles RfbFiles, err error) {
 	doc.Find("td").Each(func(i int, s *goquery.Selection) {
 		fileName, exists := s.Find("a").Attr("href")
 		if exists && strings.Contains(fileName, ".zip") {
-			rfbFiles.FilesUrl = append(rfbFiles.FilesUrl, p.baseURL+"/"+fileName)
+			rfbFiles.FilesUrl = append(rfbFiles.FilesUrl, p.baseURL+"/CNPJ/"+fileName)
 		}
 	})
 
