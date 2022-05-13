@@ -17,10 +17,10 @@ type companyRepositoryImpl struct {
 // New creates a new repository
 func NewCompanyRepository() CompanyRepository {
 	db := database.GetDatabase()
-	return companyRepositoryImpl{db: db}
+	return &companyRepositoryImpl{db: db}
 }
 
-func (r companyRepositoryImpl) Get(cnpj string) (c Company, err error) {
+func (r *companyRepositoryImpl) Get(cnpj string) (c Company, err error) {
 	err = r.db.Where("cnpj = ?", cnpj).Find(&c).Error
 	return
 }

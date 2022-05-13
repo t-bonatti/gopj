@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 
+	"t-bonatti/gopj/internal/company"
 	"t-bonatti/gopj/internal/pkg/database"
-	"t-bonatti/gopj/internal/server"
 
 	"github.com/apex/log"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -20,6 +22,12 @@ func main() {
 
 	fmt.Println("Server: ", os.Getpid())
 
-	server := server.New()
-	server.Run(":8013")
+	router := gin.Default()
+	router.GET("/status", func(c *gin.Context) {
+		c.String(http.StatusOK, "OK")
+	})
+
+	company.NewCompanyHandler(router)
+
+	router.Run(":8013")
 }
