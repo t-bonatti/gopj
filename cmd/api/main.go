@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
-	"t-bonatti/gopj/datastore/database"
-	"t-bonatti/gopj/job"
-	"t-bonatti/gopj/server"
+
+	"t-bonatti/gopj/internal/pkg/database"
+	"t-bonatti/gopj/internal/server"
 
 	"github.com/apex/log"
 )
@@ -17,10 +17,6 @@ func main() {
 			log.WithError(err).Error("failed to close database connections")
 		}
 	}()
-
-	j := job.New()
-	j.StartAsync()
-	defer j.Stop()
 
 	fmt.Println("Server: ", os.Getpid())
 

@@ -1,7 +1,6 @@
 package database
 
 import (
-	"t-bonatti/gopj/datastore/database/migrations"
 	"time"
 
 	"github.com/apex/log"
@@ -23,8 +22,6 @@ func StartDB(dsn string) {
 	config.SetMaxIdleConns(10)
 	config.SetMaxOpenConns(100)
 	config.SetConnMaxLifetime(time.Hour)
-
-	migrations.RunMigrations(db)
 }
 
 func CloseConn() error {

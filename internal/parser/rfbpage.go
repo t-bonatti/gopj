@@ -1,4 +1,4 @@
-package rfb
+package parser
 
 import (
 	"errors"
@@ -17,16 +17,16 @@ type RfbFiles struct {
 	FilesUrl  []string
 }
 
-type PageParser struct {
+type RfbPage struct {
 	client  *http.Client
 	baseURL string
 }
 
-func NewPageParser() PageParser {
-	return PageParser{client: http.DefaultClient, baseURL: rfbBaseUrl}
+func NewRfbPageParser() RfbPage {
+	return RfbPage{client: &http.Client{Timeout: 30 * time.Second}, baseURL: rfbBaseUrl}
 }
 
-func (p *PageParser) GetRfbFiles() (rfbFiles RfbFiles, err error) {
+func (p *RfbPage) GetRfbFiles() (rfbFiles RfbFiles, err error) {
 
 	res, err := p.client.Get(p.baseURL + "/CNPJ")
 	if err != nil {
@@ -54,7 +54,6 @@ func (p *PageParser) GetRfbFiles() (rfbFiles RfbFiles, err error) {
 	d := (24 * time.Hour)
 	doc.Find("body > table > tbody > tr:nth-child(4) > td:nth-child(3)").Each(func(i int, s *goquery.Selection) {
 		time, err := time.Parse("2006-01-02 15:04", strings.TrimSpace(s.Text()))
-		fmt.Println(s.Text())
 		if err != nil {
 			fmt.Println(err)
 			return

@@ -1,8 +1,7 @@
-package controller
+package company
 
 import (
 	"net/http"
-	"t-bonatti/gopj/datastore"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,12 +11,12 @@ type CompanyController interface {
 }
 
 type companyControllerImpl struct {
-	r datastore.CompanyRepository
+	r CompanyRepository
 }
 
 // New creates a new repository
 func NewCompanyController() CompanyController {
-	r := datastore.NewCompanyRepository()
+	r := NewCompanyRepository()
 	return companyControllerImpl{r: r}
 }
 

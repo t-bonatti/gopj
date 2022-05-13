@@ -1,14 +1,13 @@
-package datastore
+package company
 
 import (
-	"t-bonatti/gopj/datastore/database"
-	"t-bonatti/gopj/model"
+	"t-bonatti/gopj/internal/pkg/database"
 
 	"gorm.io/gorm"
 )
 
 type CompanyRepository interface {
-	Get(cnpj string) (c model.Company, err error)
+	Get(cnpj string) (c Company, err error)
 }
 
 type companyRepositoryImpl struct {
@@ -21,7 +20,7 @@ func NewCompanyRepository() CompanyRepository {
 	return companyRepositoryImpl{db: db}
 }
 
-func (r companyRepositoryImpl) Get(cnpj string) (c model.Company, err error) {
+func (r companyRepositoryImpl) Get(cnpj string) (c Company, err error) {
 	err = r.db.Where("cnpj = ?", cnpj).Find(&c).Error
 	return
 }

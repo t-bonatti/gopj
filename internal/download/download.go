@@ -8,6 +8,7 @@ import (
 	"path"
 	"strconv"
 	"sync"
+	"time"
 
 	"github.com/apex/log"
 	"github.com/vbauerster/mpb"
@@ -48,7 +49,8 @@ func downloadFile(folder string, url string, p *mpb.Progress) error {
 		return err
 	}
 
-	resp, err := http.DefaultClient.Do(r)
+	client := http.Client{Timeout: 30 * time.Second}
+	resp, err := client.Do(r)
 	if err != nil {
 		out.Close()
 		return err

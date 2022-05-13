@@ -1,19 +1,20 @@
-package job
+package main
 
 import (
 	"log"
-	"t-bonatti/gopj/download"
-	"t-bonatti/gopj/rfb"
+	"t-bonatti/gopj/internal/download"
+	"t-bonatti/gopj/internal/parser"
 	"time"
 
 	"github.com/go-co-op/gocron"
 )
 
-func New() *gocron.Scheduler {
+func main() {
+
 	s := gocron.NewScheduler(time.UTC)
 
-	job, _ := s.Every(60).Seconds().Do(func() {
-		pageParser := rfb.NewPageParser()
+	job, _ := s.Every(1).Seconds().Do(func() {
+		pageParser := parser.NewRfbPageParser()
 		rfbFiles, err := pageParser.GetRfbFiles()
 		if err != nil {
 			log.Fatal(err)
@@ -27,5 +28,6 @@ func New() *gocron.Scheduler {
 	})
 	job.SingletonMode()
 
-	return s
+	s.StartBlocking()
+	defer s.Stop()
 }
