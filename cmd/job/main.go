@@ -2,8 +2,8 @@ package main
 
 import (
 	"log"
-	"t-bonatti/gopj/internal/download"
-	"t-bonatti/gopj/internal/parser"
+	"t-bonatti/gopj/internal/rfb/download"
+	"t-bonatti/gopj/internal/rfb/parser"
 	"time"
 
 	"github.com/go-co-op/gocron"
