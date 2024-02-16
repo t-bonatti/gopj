@@ -15,7 +15,7 @@ func TestGetRfbFiles(t *testing.T) {
 
 	server := httptest.NewServer(http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 		assert.Equal(t, req.URL.String(), "/CNPJ")
-		data, _ := os.ReadFile("../../test/data/pagerfb.html")
+		data, _ := os.ReadFile("../../../test/data/pagerfb.html")
 		rw.Write(data)
 	}))
 	defer server.Close()

@@ -1,35 +1,40 @@
 package rfb
 
-type defaultEntity struct {
-	Code        int
+type DefaultEntity struct {
+	Code        string
 	Description string
 }
 
 type Cnae struct {
-	defaultEntity
+	Code        string
+	Description string
 }
 
 type City struct {
-	defaultEntity
+	Code        string
+	Description string
 }
 
 type LegalNature struct {
-	defaultEntity
+	Code        string
+	Description string
 }
 
 type Country struct {
-	defaultEntity
+	Code        string
+	Description string
 }
 
 type PartnerQualification struct {
-	defaultEntity
+	Code        string
+	Description string
 }
 
 type Company struct {
 	CnpjBase                    string
 	Name                        string
-	LegalNature                 int
-	ResponsibleQualification    int
+	LegalNature                 string
+	ResponsibleQualification    string
 	ShareCapital                float64
 	Size                        int
 	ResponsibleFederativeEntity string
@@ -47,7 +52,7 @@ type Establishment struct {
 	ExtCity            string
 	Country            string
 	StartDate          int
-	MainCnae           int
+	MainCnae           string
 	OtherCnae          string
 	TypeAddress        string
 	Number             string
@@ -62,7 +67,7 @@ type Establishment struct {
 	Phone2             string
 	FaxDdd             string
 	Fax                string
-	email              string
+	Email              string
 	SpecialStatus      string
 	SpecialStatusDate  int
 }
@@ -82,11 +87,11 @@ type Partner struct {
 	PartnerIdentification            int
 	Name                             string
 	Document                         string
-	PartnerQualification             int
+	PartnerQualification             string
 	StartDate                        int
-	CountryId                        int
+	CountryId                        string
 	LegalRepresentative              string
 	LegalRepresentativeName          string
-	LegalRepresentativeQualification int
+	LegalRepresentativeQualification string
 	AgeGroup                         int
 }
